@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".secondActivity">
+
+    <TextView
+        android:id="@+id/textId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is second activity."
+        android:textSize="25dp">
+
+    </TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Select date"
+        android:id="@+id/dateButtonId"
+        android:layout_height="wrap_content">
+    </Button>
+
+    <TextView
+        android:text="Date:"
+        android:id="@+id/dateTextId"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Select Time"
+        android:id="@+id/timeButtonId"
+        android:layout_height="wrap_content">
+    </Button>
+
+    <TextView
+        android:text="Time:"
+        android:id="@+id/timeTextId"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <Button
+        android:text="Pick image"
+        android:layout_marginTop="25dp"
+        android:id="@+id/pickImageId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Button>
+
+    <ImageView
+        android:id="@+id/imageId"
+        android:layout_width="250dp"
+        android:layout_height="250dp">
+    </ImageView>
+
+    <Button
+        android:layout_marginTop="25dp"
+        android:text="Show List"
+        android:id="@+id/showId"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content">
+    </Button>
+
+
+</LinearLayout>
