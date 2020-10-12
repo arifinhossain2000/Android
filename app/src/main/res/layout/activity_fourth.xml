@@ -5,7 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fourthActivity">
+    tools:context=".fourthActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/fifthButton"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Fifth Activity">
+
+    </Button>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshId"
@@ -16,9 +28,11 @@
             android:id="@+id/recycleId"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

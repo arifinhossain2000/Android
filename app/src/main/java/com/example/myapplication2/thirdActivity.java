@@ -21,6 +21,7 @@ public class thirdActivity extends AppCompatActivity {
     private String[] playerType;
     private my_Adapter adapter;
     private Button button;
+
     private int[] image={R.drawable.messi,R.drawable.shakib,
             R.drawable.neymar,R.drawable.mushfiqur,R.drawable.tamim,
             R.drawable.mark,R.drawable.jamal,R.drawable.siddikur,R.drawable.virat};

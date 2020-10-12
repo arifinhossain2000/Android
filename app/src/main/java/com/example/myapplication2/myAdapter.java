@@ -15,9 +15,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class myAdapter extends RecyclerView.Adapter<myAdapter.Myviewholder> {
 
     private List<Model> playerList;
+    private clickInterface clickInterface;
 
-    public myAdapter(List<Model> playerList) {
+    public myAdapter(List<Model> playerList,clickInterface clickInterface) {
         this.playerList = playerList;
+        this.clickInterface = clickInterface;
     }
 
     @NonNull
@@ -48,12 +50,29 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.Myviewholder> {
 
         private CircleImageView imageView;
         private TextView textView;
+        private TextView type;
 
 
         public Myviewholder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.imageId);
+            imageView=itemView.findViewById(R.id.singleImageId);
             textView=itemView.findViewById(R.id.singleNameId);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickInterface.onItemClick(getAdapterPosition());
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    clickInterface.onLongClick(getAdapterPosition());
+                    return true;
+                }
+            });
+
         }
     }
 }
