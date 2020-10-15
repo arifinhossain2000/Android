@@ -44,7 +44,7 @@ public class noteadapter extends RecyclerView.Adapter<noteadapter.viewholder> {
     public viewholder(@NonNull View itemView) {
         super(itemView);
 
-        note = itemView.findViewById(R.id.multilineId);
+        note = itemView.findViewById(R.id.singlenoteId);
     }
 }
 

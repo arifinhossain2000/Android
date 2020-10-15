@@ -39,6 +39,7 @@ public class fifthActivity<onCreateOptionsMenu> extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth);
+        noteadapter = new noteadapter();
 
         recyclerView=findViewById(R.id.recycleId);
         floatingActionButton= findViewById(R.id.insertButtonId);
@@ -74,10 +75,6 @@ public class fifthActivity<onCreateOptionsMenu> extends AppCompatActivity {
                 String note = multiAutoCompleteTextView.getText().toString();
                 Modelnote modelnote = new Modelnote(note);
                 notelist.add(modelnote);
-
-
-
-
 
             }
         }).create().show();
