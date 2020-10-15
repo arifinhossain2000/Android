@@ -14,7 +14,7 @@ public class noteadapter extends RecyclerView.Adapter<noteadapter.viewholder> {
 
     private List<Modelnote> notelist;
 
-    private void getnote(List<Modelnote> notelist)\ {
+    private void getnote(List<Modelnote> notelist) {
         this.notelist = notelist;
     }
 
