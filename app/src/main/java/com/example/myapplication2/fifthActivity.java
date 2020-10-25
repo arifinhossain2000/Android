@@ -28,8 +28,7 @@ public class fifthActivity<onCreateOptionsMenu> extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
-    private noteadapter noteadapter;
-    private List<Modelnote> notelist;
+
     private MultiAutoCompleteTextView multiAutoCompleteTextView;
 
 
@@ -39,13 +38,13 @@ public class fifthActivity<onCreateOptionsMenu> extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth);
-        noteadapter = new noteadapter();
+
 
         recyclerView=findViewById(R.id.recycleId);
         floatingActionButton= findViewById(R.id.insertButtonId);
         recyclerView.setLayoutManager(new LinearLayoutManager(fifthActivity.this));
         recyclerView.setHasFixedSize(true);
-        notelist = new ArrayList<>();
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +69,7 @@ public class fifthActivity<onCreateOptionsMenu> extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                multiAutoCompleteTextView=view.findViewById(R.id.multilineId);
 
-                String note = multiAutoCompleteTextView.getText().toString();
-                Modelnote modelnote = new Modelnote(note);
-                notelist.add(modelnote);
 
             }
         }).create().show();

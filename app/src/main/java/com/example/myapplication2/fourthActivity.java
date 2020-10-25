@@ -59,7 +59,7 @@ public class fourthActivity extends AppCompatActivity implements clickInterface{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(fourthActivity.this,fifthActivity.class);
+                Intent intent = new Intent(fourthActivity.this,SeventhActivity.class);
                 startActivity(intent);
             }
         });

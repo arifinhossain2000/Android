@@ -21,13 +21,20 @@ import java.util.List;
 public class sixthActivity extends AppCompatActivity {
 
     private MultiAutoCompleteTextView multiAutoCompleteTextView;
+    private RecyclerView recyclerView;
+    private noteadapter noteadapter;
+    private List<Modelnote> notelist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sixth);
 
+        noteadapter = new noteadapter();
+        notelist = new ArrayList<>();
+
         multiAutoCompleteTextView=findViewById(R.id.multilineId);
+        recyclerView=findViewById(R.id.recycleId);
 
 
     }
@@ -35,11 +42,18 @@ public class sixthActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.note,menu);
+
         return true;
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.submiId) {
+
+            /*multiAutoCompleteTextView=view.findViewById(R.id.multilineId);
+            String note = multiAutoCompleteTextView.getText().toString();
+            Modelnote modelnote = new Modelnote(note);
+            notelist.add(modelnote);*/
+
             Intent  intent= new Intent(sixthActivity.this, fifthActivity.class);
             startActivity(intent);
 

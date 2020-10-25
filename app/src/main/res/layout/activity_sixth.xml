@@ -8,8 +8,6 @@
     android:orientation="vertical"
     tools:context=".sixthActivity">
 
-
-
     <MultiAutoCompleteTextView
         android:id="@+id/multilineId"
         android:layout_width="match_parent"
@@ -17,14 +15,6 @@
         android:gravity="top">
 
     </MultiAutoCompleteTextView>
-
-
-
-
-
-
-
-
 
 
 </RelativeLayout>
