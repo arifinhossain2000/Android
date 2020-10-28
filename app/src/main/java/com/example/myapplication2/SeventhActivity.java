@@ -1,7 +1,10 @@
 package com.example.myapplication2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +13,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,6 +32,8 @@ public class SeventhActivity extends AppCompatActivity {
     private FloatingActionButton insertButton;
     private List<Playermodel> playerLIST;
     private PlayerAdapter playerAdapter;
+    private RelativeLayout relativeLayout;
+
 
 
 
@@ -32,6 +41,9 @@ public class SeventhActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seventh);
+
+        relativeLayout=findViewById(R.id.relativeId);
+
 
 
 
@@ -62,32 +74,25 @@ public class SeventhActivity extends AppCompatActivity {
             @Override
             public void onsingleclick(int position) {
 
-                String id = "Index:"+playerLIST.get(position).getId();
-                String name = "Name:"+playerLIST.get(position).getName();
-                String code = "Code:"+playerLIST.get(position).getCode();
-                String type = "Type:"+playerLIST.get(position).getType();
-                String detalis = id+"\n"+name+"\n"+code+"\n"+type;
-                showdetalis(detalis);
-
+                Playermodel detalis = playerLIST.get(position);
+                Intent intent = new Intent(SeventhActivity.this,DetalisActivity.class);
+                intent.putExtra("detalis",detalis);
+                startActivity(intent);
             }
 
             @Override
             public void onLongclick(final int position) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(SeventhActivity.this);
-                String[] option ={"Delete", "Update"};
-                builder.setItems(option, new DialogInterface.OnClickListener() {
+                builder.setTitle("Delete").setMessage("Do u want to delete?").setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        deleteData(position);
 
-                        if (which == 0){
-
-                             deleteData(position);
-
-                        }
-                        if(which == 1){
-
-                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
                     }
                 }).create().show();
@@ -110,23 +115,6 @@ public class SeventhActivity extends AppCompatActivity {
          }
 
 
-    }
-
-    private void showdetalis(String detalis) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(SeventhActivity.this);
-        builder.setTitle("Detalis").setMessage(detalis).setCancelable(true).setPositiveButton("Edit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(SeventhActivity.this,InsertActivity.class);
-                startActivity(intent);
-
-            }
-        }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).create().show();
     }
 
     private void loadData() { // showing data
@@ -153,4 +141,40 @@ public class SeventhActivity extends AppCompatActivity {
         playerAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(playerAdapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.palyer_menu,menu);
+
+        MenuItem menuItem = menu.findItem(R.id.searhId);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                playerAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
+   // @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//        if(item.getItemId()==R.id.darkId ){
+//            relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorDark));
+//
+//
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

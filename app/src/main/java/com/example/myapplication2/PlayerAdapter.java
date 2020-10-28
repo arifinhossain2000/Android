@@ -3,20 +3,24 @@ package com.example.myapplication2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerViewholder>{
 
     private List<Playermodel> playerList;
+    private List<Playermodel> searchList;
     private onitemclick onitemclick;
 
     public  void getPlayerList(List<Playermodel> playerList){
         this.playerList=playerList;
+        searchList = new ArrayList<>(playerList);
     }
 
     @NonNull
@@ -41,6 +45,43 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
     public int getItemCount() {
         return playerList.size();
     }
+
+    public Filter getFilter(){
+        return playerFilter;
+    }
+
+    public Filter playerFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<Playermodel> filterUser = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filterUser.addAll(searchList);
+            }
+            else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Playermodel playermodel : searchList){
+                    if(playermodel.getCode().toLowerCase().contains(constraint) || playermodel.getName().toLowerCase().contains(constraint)){
+
+                        filterUser.add(playermodel);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filterResults;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            playerList.clear();
+            playerList.addAll((List<Playermodel>)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
     public  class  playerViewholder extends RecyclerView.ViewHolder{
 

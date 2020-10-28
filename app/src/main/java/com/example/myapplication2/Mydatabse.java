@@ -91,5 +91,23 @@ public class Mydatabse extends SQLiteOpenHelper{
         return value;
     }
 
+    public  long update(String id, String name, String type, String code){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(playerId,id);
+        contentValues.put(playerName,name);
+        contentValues.put(playerType, type);
+        contentValues.put(playerCode, code);
+
+        long value = sqLiteDatabase.update(tableName,contentValues,playerId+" =?",new String[]{id});
+
+        return  value;
+
+
+
+    }
+
 
 }
