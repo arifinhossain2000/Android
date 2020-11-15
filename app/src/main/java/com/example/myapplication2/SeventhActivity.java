@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,9 +20,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,9 @@ public class SeventhActivity extends AppCompatActivity {
     private List<Playermodel> playerLIST;
     private PlayerAdapter playerAdapter;
     private RelativeLayout relativeLayout;
+    private FloatingActionButton logoutButton;
+    private Toolbar maintoolbar;
+    private TextView tooltext;
 
 
 
@@ -43,12 +51,11 @@ public class SeventhActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seventh);
 
         relativeLayout=findViewById(R.id.relativeId);
-
-
-
+        relativeLayout.setBackgroundColor(getColor());
 
         recyclerView = findViewById(R.id.recycleId);
         insertButton = findViewById(R.id.insertButtonId);
+        logoutButton=findViewById(R.id.logouttButtonId);
 
 
         mydatabse = new Mydatabse(SeventhActivity.this);
@@ -58,6 +65,25 @@ public class SeventhActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+
+        maintoolbar=findViewById(R.id.maintoolId);
+        tooltext=findViewById(R.id.toolTextId);
+        tooltext.setText("SevenActivity");
+        setSupportActionBar(maintoolbar);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("arifin", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor= sharedPreferences.edit();
+                editor.putString("status","notlogin");
+                editor.commit();
+                Intent intent = new Intent(SeventhActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
 
 
         insertButton.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +126,8 @@ public class SeventhActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void deleteData(int position) {
 
@@ -166,15 +194,35 @@ public class SeventhActivity extends AppCompatActivity {
         return true;
     }
 
-   // @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        if(item.getItemId()==R.id.darkId ){
-//            relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorDark));
-//
-//
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+      if(item.getItemId()==R.id.darkId ){
+           relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorDark));
+           setColor(getResources().getColor(R.color.colorDark));
+
+
+       }
+
+        return super.onOptionsItemSelected(item);
+  }
+
+    private void setColor(int color) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("arifin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putInt("bgcolor",color);
+        editor.commit();
+
+    }
+
+    private int getColor(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("arifin", Context.MODE_PRIVATE);
+        int value=sharedPreferences.getInt("bgcolor",0);
+
+        return value;
+    }
+
+
 }

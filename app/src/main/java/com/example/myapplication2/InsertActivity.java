@@ -1,6 +1,7 @@
 package com.example.myapplication2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,13 +9,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class InsertActivity extends AppCompatActivity {
 
     private EditText codeEdittext, typeEdittext, nameEdittext;
-    private Button insert, list;
+    private Button insert, list,PICK;
     private Mydatabse mydatabse;
+    private Toolbar inserttoolbar;
+    private TextView tooltext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,12 @@ public class InsertActivity extends AppCompatActivity {
         typeEdittext=findViewById(R.id.insertTypeId);
         nameEdittext=findViewById(R.id.insertNameId);
         insert=findViewById(R.id.insertId);
+        PICK=findViewById(R.id.pickButtonId);
         list=findViewById(R.id.ViewId);
+        inserttoolbar=findViewById(R.id.inserttoolId);
+        tooltext=findViewById(R.id.toolTextId);
+        tooltext.setText("InsertActivity");
+        setSupportActionBar(inserttoolbar);
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
