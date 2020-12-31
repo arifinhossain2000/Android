@@ -16,6 +16,38 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
 
     private List<Playermodel> playerList;
     private List<Playermodel> searchList;
+    public Filter playerFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<Playermodel> filterUser = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filterUser.addAll(searchList);
+            }
+            else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Playermodel playermodel : searchList){
+                    if(playermodel.getCode().toLowerCase().contains(constraint) || playermodel.getName().toLowerCase().contains(constraint)){
+
+                        filterUser.add(playermodel);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filterResults;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            playerList.clear();
+            playerList.addAll((List<Playermodel>)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
     private onitemclick onitemclick;
 
     public  void getPlayerList(List<Playermodel> playerList){
@@ -50,38 +82,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
         return playerFilter;
     }
 
-    public Filter playerFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+    public void  setOnitemclick(onitemclick onitemclick){
+        this.onitemclick = onitemclick;
+    }
 
-            List<Playermodel> filterUser = new ArrayList<>();
-
-            if(constraint == null || constraint.length() == 0){
-                filterUser.addAll(searchList);
-            }
-            else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Playermodel playermodel : searchList){
-                    if(playermodel.getCode().toLowerCase().contains(constraint) || playermodel.getName().toLowerCase().contains(constraint)){
-
-                        filterUser.add(playermodel);
-                    }
-                }
-            }
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = filterResults;
-            return filterResults;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-
-            playerList.clear();
-            playerList.addAll((List<Playermodel>)results.values);
-            notifyDataSetChanged();
-
-        }
-    };
+    public interface onitemclick {
+        void onsingleclick(int position);
+        void onLongclick(int position);
+    }
 
     public  class  playerViewholder extends RecyclerView.ViewHolder{
 
@@ -121,15 +129,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
                 }
             });
         }
-    }
-
-    public interface onitemclick {
-        void onsingleclick(int position);
-        void onLongclick(int position);
-    }
-
-    public void  setOnitemclick(onitemclick onitemclick){
-        this.onitemclick = onitemclick;
     }
 
 

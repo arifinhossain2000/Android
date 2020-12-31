@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<item
+      android:title="Search"
+      android:id="@+id/searhId"
+      android:icon="@drawable/ic_search_player"
+      app:showAsAction="ifRoom|collapseActionView"
+      app:actionViewClass="androidx.appcompat.widget.SearchView">
+</item>
+    <item
+           android:title="Darkmode"
+           android:id="@+id/darkId"
+           app:showAsAction="never">
+    </item>
+
+
+</menu>

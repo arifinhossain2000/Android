@@ -17,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
         if(sharedPreferences.contains("status")){
             String value = sharedPreferences.getString("status","notlogin");
             if(value.equals("login")){
-                Intent intent = new Intent(StartActivity.this, SeventhActivity.class);
+                Intent intent = new Intent(StartActivity.this, EightActivity.class);
                 startActivity(intent);
                 finish();
             }

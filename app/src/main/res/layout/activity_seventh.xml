@@ -5,9 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativeId"
     tools:context=".fifthActivity">
 
+    <include layout="@layout/toolbar"
+        android:id="@+id/maintoolId">
+
+    </include>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/maintoolId"
         tools:listitem="@layout/single_item_player"
         android:id="@+id/recycleId"
         android:layout_width="match_parent"
@@ -18,6 +25,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
+        android:padding="5dp"
         android:src="@drawable/ic_add"
         android:id="@+id/insertButtonId"
         android:layout_height="wrap_content"
@@ -26,5 +34,17 @@
         android:layout_margin="20dp">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_logout"
+        android:id="@+id/logouttButtonId"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="20dp">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.myapplication2;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,24 +10,29 @@ import java.io.Serializable;
 
 public class Playermodel implements Serializable {
 
-    @PrimaryKey()
-    private  String id;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private  int id;
 
     private  String name;
     private  String type;
     private  String code;
 
-    public Playermodel(String id, String name, String type, String code) {
-        this.id = id;
+    public Playermodel(  String name, String type, String code) {
+
         this.name = name;
         this.type = type;
         this.code = code;
     }
 
-    public String getId() {
+
+    public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

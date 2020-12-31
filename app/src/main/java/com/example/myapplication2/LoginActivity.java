@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("status","login");
                 editor.commit();
 
-                Intent intent = new Intent(LoginActivity.this,SeventhActivity.class);
+                Intent intent = new Intent(LoginActivity.this, EightActivity.class);
                 startActivity(intent);
                 finish();
             }
