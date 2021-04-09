@@ -3,6 +3,7 @@ package com.example.myapplication2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
 
     private List<Playermodel> playerList;
     private List<Playermodel> searchList;
+    private onitemclick onitemclick;
+
     public Filter playerFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -48,7 +51,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
 
         }
     };
-    private onitemclick onitemclick;
+
 
     public  void getPlayerList(List<Playermodel> playerList){
         this.playerList=playerList;
@@ -82,18 +85,20 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
         return playerFilter;
     }
 
-    public void  setOnitemclick(onitemclick onitemclick){
-        this.onitemclick = onitemclick;
-    }
+
 
     public interface onitemclick {
         void onsingleclick(int position);
-        void onLongclick(int position);
+        void onLongclick(View view);
+    }
+    public void  setOnitemclick(onitemclick onitemclick){
+        this.onitemclick = onitemclick;
     }
 
     public  class  playerViewholder extends RecyclerView.ViewHolder{
 
         private TextView singleName, singleCode;
+        private CheckBox checkBox;
 
 
 
@@ -102,6 +107,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
 
             singleName= itemView.findViewById(R.id.singlenameId);
             singleCode = itemView.findViewById(R.id.singlecodeId);
+            checkBox = itemView.findViewById(R.id.singleCheck);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,7 +130,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.playerView
                     int position = getAdapterPosition();
 
                     if(onitemclick != null && position!=RecyclerView.NO_POSITION){
-                        onitemclick.onLongclick(position);
+                        onitemclick.onLongclick(v);
                     }
                     return false;
                 }

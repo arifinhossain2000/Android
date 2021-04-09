@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         if(view.getId()==R.id.buttonOneId){
 
-            Intent intent = new Intent(MainActivity.this, secondActivity.class);
+            Intent intent = new Intent(MainActivity.this, EightActivity.class);
             intent.putExtra("key", "one");
             startActivity(intent);
 
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }
         else if(view.getId()==R.id.buttonTwoId){
 
-            Intent intent = new Intent(MainActivity.this, secondActivity.class);
+            Intent intent = new Intent(MainActivity.this, EightActivity.class);
             intent.putExtra("key", "Two");
             startActivity(intent);
         }

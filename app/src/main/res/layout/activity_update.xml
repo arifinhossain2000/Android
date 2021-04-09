@@ -8,7 +8,13 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".UpdateActivity">
+    tools:context=".updateActivity">
+
+    <include
+        android:id="@+id/updatetoolId"
+        layout="@layout/toolbar">
+
+    </includ
 
     <TextView
         android:text="ID:"

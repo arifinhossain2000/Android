@@ -54,7 +54,22 @@ public class EightActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        loadData(); 
+        loadData();
+        adapter.setOnitemclick(new PlayerAdapter.onitemclick() {
+            @Override
+            public void onsingleclick(int position) {
+
+                Playermodel playermodel = playerList.get(position);
+                Intent intent = new Intent(EightActivity.this, detalisActivity.class);
+                intent.putExtra("detalis",playermodel);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongclick(View view) {
+
+            }
+        });
     }
 
     private void loadData() {

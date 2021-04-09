@@ -69,7 +69,7 @@ public class insert_eightActivity extends AppCompatActivity implements View.OnCl
 
             if(name.equals("") || code.equals("") || type.equals("Player Type")|| type.equals("")){
 
-                Toast.makeText(this, "Faild ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed ", Toast.LENGTH_SHORT).show();
             }
             else {
                     insertInfo(name,code,type);
