@@ -12,20 +12,19 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_recycle.*
 import kotlin.random.Random
 
-class Recycle : AppCompatActivity() {
+class Recycle : AppCompatActivity(),MyAdapter.OnItmClick {
 
     private val image= arrayOf(R.drawable.messi,R.drawable.shakib,R.drawable.neymar,
         R.drawable.mushfiqur,R.drawable.tamim, R.drawable.virat ,R.drawable.mark,R.drawable.jamal,R.drawable.siddikur)
 
        private val playerList= ArrayList<Player>()
        lateinit var adapter:MyAdapter
+       private lateinit var binding: ActivityRecycleBinding
 
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycle)
+           binding= ActivityRecycleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setTitle("Recycle View")
 
         val playerName= resources.getStringArray(R.array.player)
@@ -35,10 +34,10 @@ class Recycle : AppCompatActivity() {
             val player= Player(image[i],playerName[i],playerRole[i])
             playerList.add(player)
         }
-        adapter= MyAdapter(playerList)
-        recycleView.layoutManager= LinearLayoutManager(this)
-        recycleView.setHasFixedSize(true)
-        recycleView.adapter= adapter
+        adapter= MyAdapter(playerList,this)
+           binding.recycleView.layoutManager= LinearLayoutManager(this)
+           binding.recycleView.setHasFixedSize(true)
+           binding.recycleView.adapter= adapter
 
         recycleRefresh.setOnRefreshListener {
             val index= Random.nextInt(9)
@@ -50,24 +49,27 @@ class Recycle : AppCompatActivity() {
 
     }
 
-//    override fun onItemClick(position: Int) {
-//
-//        val value= playerList[position].name.toString()
-//        Snackbar.make(recycleLayout,value,Snackbar.LENGTH_LONG).show()
-//    }
-//
-//    override fun onLongItemClick(position: Int) {
-//
-//        val builder= AlertDialog.Builder(this)
-//        builder.setTitle("Alert")
-//        builder.setMessage("Do you want to delete ?")
-//        builder.setPositiveButton("Yes"){ dialogInterface: DialogInterface, i: Int ->
-//
-//            playerList.removeAt(position)
-//            adapter.notifyItemRemoved(position)
-//        }
-//        builder.setNegativeButton("No",null)
-//        val dialoge= builder.create()
-//        dialoge.show()
-//    }
+    override fun onItemClick(position: Int) {
+        val value =playerList[position].Name.toString()
+        Snackbar.make(mainRecycle,value,Snackbar.LENGTH_LONG).show()
+
+    }
+
+    override fun onLongItemClick(position: Int) {
+
+        val builder=AlertDialog.Builder(this)
+        builder.setTitle("aLERT")
+        builder.setMessage("Do you want to delete")
+        builder.setPositiveButton("Yes"){ dialogInterface: DialogInterface, i: Int ->
+            playerList.removeAt(position)
+            adapter.notifyItemRemoved(position)
+
+        }
+        builder.setNegativeButton("No",null)
+        val dailoge = builder.create()
+        dailoge.show()
+
+    }
+
+
 }

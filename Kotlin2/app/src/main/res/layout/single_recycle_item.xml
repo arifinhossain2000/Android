@@ -28,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/imgLayout"
-            android:layout_toRightOf="@id/imgLayout">
+            android:layout_toRightOf="@id/imgLayout"
+            android:layout_centerInParent="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,13 +54,13 @@
         </RelativeLayout>
 
     </RelativeLayout>
- <view
-     android:layout_width="match_parent"
-     android:layout_height="1dp"
-     android:background="@color/purple_200"
-     android:layout_below="@id/topLayout">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purple_200"
+        android:layout_below="@id/topLayout">
 
- </view>
+    </View>
 
 
 </RelativeLayout>

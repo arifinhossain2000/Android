@@ -1,6 +1,8 @@
 package com.example.kotlin2
 
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.single_recycle_item.view.*
 
-class MyAdapter(private val playerList:List<Player>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(private val playerList:List<Player>, private val listner:OnItmClick): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -31,31 +33,35 @@ class MyAdapter(private val playerList:List<Player>): RecyclerView.Adapter<MyAda
 
     // override fun getItemCount()= playerList.size
 
-    inner  class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner  class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,View.OnLongClickListener {
 
-        val image: CircleImageView= itemView.singleRecycleImage
-        val name: TextView= itemView.singleRecycleName
-        val role: TextView= itemView.singleRecycleRole
+        val image: CircleImageView = itemView.singleRecycleImage
+        val name: TextView = itemView.singleRecycleName
+        val role: TextView = itemView.singleRecycleRole
 
-//        init {
-//            itemView.setOnClickListener(this)
-//            itemView.setOnLongClickListener(this)
-//        }
+        init {
+            itemView.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
+        }
+        override fun onClick(v: View?) {
+            val position:Int = adapterPosition
 
-//        override fun onClick(p0: View?) {
-//            val position:Int= adapterPosition
-//            if(position != RecyclerView.NO_POSITION){
-//                listener.onItemClick(position)
-//            }
-//        }
-//
-//        override fun onLongClick(p0: View?): Boolean {
-//            val position:Int= adapterPosition
-//            if(position != RecyclerView.NO_POSITION){
-//                listener.onLongItemClick(position)
-//            }
-//            return false
-//        }
+            if (position != RecyclerView.NO_POSITION){
+                listner.onItemClick(position)
+
+            }
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            val position:Int = adapterPosition
+
+            if (position != RecyclerView.NO_POSITION){
+                listner.onLongItemClick(position)
+
+            }
+          return false
+        }
+
     }
 
     interface  OnItmClick{
