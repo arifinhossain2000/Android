@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:id="@+id/topLayout">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgLayout">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="45dp"
+                android:id="@+id/singleRecycleImage"
+                android:layout_height="45dp"
+                android:src="@drawable/mark">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgLayout"
+            android:layout_toRightOf="@id/imgLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:id="@+id/singleRecycleName"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roll"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:id="@+id/singleRecycleRole"
+                android:layout_below="@id/singleRecycleName">
+            </TextView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+ <view
+     android:layout_width="match_parent"
+     android:layout_height="1dp"
+     android:background="@color/purple_200"
+     android:layout_below="@id/topLayout">
+
+ </view>
+
+
+</RelativeLayout>
