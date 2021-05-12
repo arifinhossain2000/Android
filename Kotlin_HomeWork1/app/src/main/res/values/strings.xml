@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Kotlin_HomeWork1</string>
+    <string name="bd">Bangladesh</string>
+    <string name="india">India</string>
+    <string name="pak">Pakistan</string>
+    <string name="sri">Srilanka</string>
+    <string name="pick">Pick Image</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="bddescription">Bnagladesh. I live in third biggest city in the country which is also called entry of Sundarban</string>
+    <string name="indescription">India. it is gaint country with 150 million population</string>
+    <string name="pakdescription"> Pakistain. I love the pashaweri brackfast</string>
+    <string name="sridescription"> Srilanka. I love the srilakan sea food</string>
+
+
+
+</resources>

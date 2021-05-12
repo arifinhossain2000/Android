@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Kotlin2</string>
+    <string-array name="player">
+
+        <item>Messi</item>
+        <item>Shakib</item>
+        <item>Neymar</item>
+        <item>Mushfique</item>
+        <item>Tamim</item>
+        <item>Bill Gates</item>
+        <item>Mark Jukarbarg</item>
+        <item>Jamal Bhuyan</item>
+        <item>Siddikur Rahman</item>
+
+
+    </string-array>
+
+
+    <string-array name="role">
+
+        <item>Football Player </item>
+        <item>Cricket Player</item>
+        <item>Football Player </item>
+        <item>Cricket Player</item>
+        <item>Cricket Player</item>
+        <item>Microsoft Owner</item>
+        <item>Facebook Owner</item>
+        <item>Football Player </item>
+        <item>Golf Player</item>
+
+
+    </string-array>
+</resources>
